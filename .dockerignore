@@ -1,0 +1,7 @@
+.git
+.github
+.idea
+.vscode
+src
+target/*
+!target/student-management-1.0.0.jar
