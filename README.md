@@ -57,9 +57,9 @@ docker run --rm -p 8080:8080 `
 
 ## CI/CD
 
-Pushing to `main` runs Java 21 compilation, tests and JaCoCo, waits for the SonarQube quality gate, pushes versioned and `latest` Docker Hub images, then deploys the versioned image to Ubuntu over SSH.
+Pushing to `main` always runs Java 21 compilation, tests, and JaCoCo. SonarQube analysis, Docker Hub publishing, and Ubuntu deployment run only when their corresponding GitHub Actions secrets are configured; otherwise those optional stages are skipped.
 
-Configure these GitHub Actions secrets before enabling deployment:
+To enable the optional stages, configure these GitHub Actions secrets. `SONAR_HOST_URL` must be the full reachable SonarQube server URL, including its scheme (for example, `https://sonarqube.example.com`), not an API path:
 
 - `SONAR_HOST_URL`, `SONAR_TOKEN`
 - `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`
